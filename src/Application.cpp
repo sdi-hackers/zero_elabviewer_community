@@ -17,6 +17,11 @@
 #include "Application.h"
 #include <iostream>
 #include <QtQml>
+#if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
+#include <QtGlobal>
+#else
+#include <QtSystemDetection>
+#endif
 
 Q_DECLARE_METATYPE(QVector<double>)
 
@@ -206,7 +211,17 @@ void Application::connectPort(){
         QString error = serialPort->errorString();
         qDebug() << error;
         QMessageBox msgBox;
-        msgBox.setText("Unable to connect to COM port:\n"+error);
+        if (serialPort->error() == QSerialPort::PermissionError) {
+#ifdef Q_OS_LINUX
+            QString hint("\n\nAdding your user account to the dialout or uucp user groups might fix this,"
+                         "\nsee https://github.com/sdi-hackers/zero_elabviewer_community#permission-denied-on-linux");
+#else
+            QString hint("");
+#endif
+            msgBox.setText("Unable to connect to COM port:\n"+error+hint);
+        } else {
+            msgBox.setText("Unable to connect to COM port:\n"+error);
+        }
         msgBox.exec();
     }
 }

@@ -239,6 +239,19 @@ if (NOT "${WASM}")
             DESTINATION share/applications)
 endif ()
 
+if (LINUX)
+    set(PACKAGE_UDEV_RULE "extras/udev/71-zero-elabviewer-community.rules")
+
+    option(INSTALL_UDEV_RULES "Install udev rules to the system" OFF)
+    set(UDEV_RULES_INSTALL_DIR "/lib/udev/rules.d/"
+        CACHE STRING "Path where to install the udev rules file")
+
+    if (INSTALL_UDEV_RULES)
+        install(FILES ${PACKAGE_UDEV_RULE}
+                DESTINATION ${UDEV_RULES_INSTALL_DIR})
+    endif ()
+endif ()
+
 # =============================================================================
 # Packages
 # =============================================================================
@@ -272,6 +285,7 @@ if ("${DEV_MODE}")
             ${PACKAGE_NAME}_${PACKAGE_VERSION}-${PACKAGE_RELEASE}.dsc
             extras/packaging/deb/dsc.in
             extras/packaging/deb/debian
+            ${PACKAGE_UDEV_RULE}
             ${PACKAGE_NAME}_${PACKAGE_VERSION}-${PACKAGE_RELEASE}.debian.tar.xz)
     # Creates bunch of files in ${CMAKE_BINARY_DIR}/target/pkg that you can just pass to
     # Open Build Service and it will build all packaging.

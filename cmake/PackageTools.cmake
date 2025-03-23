@@ -55,13 +55,17 @@ macro(package_config_file target_name config_file_name template)
 			DEPENDS ${config_file_name})
 endmacro()
 
-macro(package_debian_quilt target_name config_file_name template debian_dir output_archive)
+macro(package_debian_quilt target_name config_file_name template debian_dir udev_rule output_archive)
 	file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/debian)
 	# The @ONLY option disable replacement of ${} which may be used by shell as well.
 	configure_file(${debian_dir}/control.in ${CMAKE_BINARY_DIR}/debian/control @ONLY)
 	file(COPY ${CMAKE_BINARY_DIR}/debian/control DESTINATION ${CMAKE_BINARY_DIR}/debian
 			FILE_PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
 	file(COPY ${debian_dir}/compat
+			DESTINATION ${CMAKE_BINARY_DIR}/debian
+			FILE_PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
+	configure_file(${udev_rule} ${CMAKE_BINARY_DIR}/debian/${PACKAGE_NAME}.udev COPYONLY)
+	file(COPY ${CMAKE_BINARY_DIR}/debian/${PACKAGE_NAME}.udev
 			DESTINATION ${CMAKE_BINARY_DIR}/debian
 			FILE_PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
 	file(COPY ${debian_dir}/rules
