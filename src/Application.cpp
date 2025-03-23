@@ -211,17 +211,17 @@ void Application::connectPort(){
         QString error = serialPort->errorString();
         qDebug() << error;
         QMessageBox msgBox;
+
+        QString hint("");
+
         if (serialPort->error() == QSerialPort::PermissionError) {
 #ifdef Q_OS_LINUX
-            QString hint("\n\nAdding your user account to the dialout or uucp user groups might fix this,"
-                         "\nsee https://github.com/sdi-hackers/zero_elabviewer_community#permission-denied-on-linux");
-#else
-            QString hint("");
+            hint = "\n\nAdding your user account to the dialout or uucp user groups might fix this,"
+                   "\nsee https://github.com/sdi-hackers/zero_elabviewer_community#permission-denied-on-linux";
 #endif
-            msgBox.setText("Unable to connect to COM port:\n"+error+hint);
-        } else {
-            msgBox.setText("Unable to connect to COM port:\n"+error);
         }
+
+        msgBox.setText("Unable to connect to COM port:\n"+error+hint);
         msgBox.exec();
     }
 }
