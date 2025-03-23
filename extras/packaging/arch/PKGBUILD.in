@@ -16,7 +16,11 @@ prepare() {
 	cd "$srcdir/@PACKAGE_TOPLEVEL_DIR@"
 	mkdir build
 	cd build
-	cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+	cmake .. \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DINSTALL_UDEV_RULES=ON \
+		-DUDEV_RULES_INSTALL_DIR="${pkgdir}/usr/lib/udev/rules.d"
 }
 
 build() {

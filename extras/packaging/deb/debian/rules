@@ -11,3 +11,6 @@ export QT_SELECT := qt5
 
 %:
 	dh $@ --buildsystem=cmake
+
+override_dh_installudev:
+	dh_installudev --priority=71
