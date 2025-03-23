@@ -218,6 +218,12 @@ if (NOT "${WASM}")
     install(FILES "data/icons/${PACKAGE_NAME}.png"
             DESTINATION "share/icons/hicolor/256x256/apps"
             RENAME "${PACKAGE_NAME}.png")
+
+    configure_file("data/${MAIN_PROJECT_APPID}.metainfo.xml.in"
+            "${EXECUTABLE_OUTPUT_PATH}/${MAIN_PROJECT_APPID}.metainfo.xml")
+    install(FILES "${EXECUTABLE_OUTPUT_PATH}/${MAIN_PROJECT_APPID}.metainfo.xml"
+            DESTINATION share/metainfo)
+
     configure_file(data/desktop.in
             "${EXECUTABLE_OUTPUT_PATH}/${PACKAGE_NAME}.desktop")
     install(FILES "${EXECUTABLE_OUTPUT_PATH}/${PACKAGE_NAME}.desktop"
