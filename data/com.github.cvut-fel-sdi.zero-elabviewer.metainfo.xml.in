@@ -36,21 +36,21 @@
       <li>Generator based on DDS (direct digital synthesis)</li>
     </ul>
     <p>@GENERIC_NAME@ can communicate with lab kits such as F0-Lab and G0-Lab, which are built around tiny STM32 microcontrollers. These kits can be built by students and used in introductory EE lessons.</p>
-    <p>This project is a community fork of the official Zero eLab Viewer code base developed by Adam Berlinger.</p>
+    <p>The Zero eLab Viewer project is result of Adam Berlinger's Master's Thesis project led by doc. Jan Fischer.</p>
   </description>
 
   <screenshots>
     <screenshot type="default">
       <caption>Oscilloscope view</caption>
-      <image>https://github.com/sdi-hackers/zero_elabviewer_community/blob/3ef5d9ce9695e00800205aa6f5ab2b89e053860c/resources/help/img/generator_app.png</image>
+      <image>https://github.com/cvut-fel-sdi/zero_elabviewer/blob/3ef5d9ce9695e00800205aa6f5ab2b89e053860c/resources/help/img/generator_app.png</image>
     </screenshot>
     <screenshot>
       <caption>Home dialog</caption>
-      <image>https://github.com/sdi-hackers/zero_elabviewer_community/blob/3ef5d9ce9695e00800205aa6f5ab2b89e053860c/resources/help/img/app_intro.png</image>
+      <image>https://github.com/cvut-fel-sdi/zero_elabviewer/blob/3ef5d9ce9695e00800205aa6f5ab2b89e053860c/resources/help/img/app_intro.png</image>
     </screenshot>
     <screenshot>
       <caption>Signal generator</caption>
-      <image>https://github.com/sdi-hackers/zero_elabviewer_community/blob/3ef5d9ce9695e00800205aa6f5ab2b89e053860c/resources/help/img/generator_app.png</image>
+      <image>https://github.com/cvut-fel-sdi/zero_elabviewer/blob/3ef5d9ce9695e00800205aa6f5ab2b89e053860c/resources/help/img/generator_app.png</image>
     </screenshot>
   </screenshots>
 

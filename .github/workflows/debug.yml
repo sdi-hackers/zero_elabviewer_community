@@ -95,7 +95,7 @@ jobs:
         if: runner.os == 'Windows'
         working-directory: ${{ github.workspace }}/build/target
         shell: bash
-        run: "windeployqt \"${{ github.workspace }}/build/target/zero_elabviewer_community.exe\""
+        run: "windeployqt \"${{ github.workspace }}/build/target/zero_elabviewer.exe\""
 
       - name: Store created artifacts
         uses: actions/upload-artifact@v4

@@ -28,7 +28,7 @@ rescale 512 || exit 1
 
 # 3. create ICNS bundle
 png2icns \
-    baked/zero-elabviewer-community.icns \
+    baked/zero-elabviewer.icns \
     baked/16x16.png \
     baked/32x32.png \
     baked/48x48.png \
@@ -40,7 +40,7 @@ png2icns \
 # 4. create ICO bundle
 icotool \
     --create \
-    --output=baked/zero-elabviewer-community.ico \
+    --output=baked/zero-elabviewer.ico \
     baked/16x16.png \
     baked/24x24.png \
     baked/32x32.png \

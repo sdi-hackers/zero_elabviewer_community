@@ -55,9 +55,9 @@ Application::Application(){
     this->setMinimumSize(300,200);
 
 #ifdef APP_RC_VERSION
-    setWindowTitle(QString("Zero eLab Viewer Community v%1.%2rc%3").arg(APP_MAJOR_VERSION).arg(APP_MINOR_VERSION).arg(APP_RC_VERSION));
+    setWindowTitle(QString("Zero eLab Viewer v%1.%2rc%3").arg(APP_MAJOR_VERSION).arg(APP_MINOR_VERSION).arg(APP_RC_VERSION));
 #else
-    setWindowTitle(QString("Zero eLab Viewer Community v%1.%2").arg(APP_MAJOR_VERSION).arg(APP_MINOR_VERSION));
+    setWindowTitle(QString("Zero eLab Viewer v%1.%2").arg(APP_MAJOR_VERSION).arg(APP_MINOR_VERSION));
 #endif
     setWindowIcon(QIcon(":/icon.ico"));
 
@@ -217,7 +217,7 @@ void Application::connectPort(){
         if (serialPort->error() == QSerialPort::PermissionError) {
 #ifdef Q_OS_LINUX
             hint = "\n\nAdding your user account to the dialout or uucp user groups might fix this,"
-                   "\nsee https://github.com/sdi-hackers/zero_elabviewer_community#permission-denied-on-linux";
+                   "\nsee https://github.com/cvut-fel-sdi/zero_elabviewer#permission-denied-on-linux";
 #endif
         }
 
