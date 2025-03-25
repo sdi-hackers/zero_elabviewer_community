@@ -67,7 +67,7 @@ BuildRequires:  update-desktop-files
 
 %build
 %if 0%{?suse_version}
-%cmake -DCMAKE_CXX_FLAGS="-Wno-error" -DCMAKE_C_FLAGS="-Wno-error" -DINSTALL_UDEV_RULES=ON -DUDEV_RULES_INSTALL_DIR=%{buildroot}%{_udevrulesdir}
+%cmake -DCMAKE_CXX_FLAGS="-Wno-error" -DCMAKE_C_FLAGS="-Wno-error"
 %else
 %cmake
 %endif
