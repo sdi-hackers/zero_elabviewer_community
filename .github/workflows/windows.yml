@@ -1,0 +1,60 @@
+# Copied from https://github.com/jirimaier/DataPlotter/blob/be8039f43767a94f4bc857a5beb6c8ccd32d567a/.github/workflows/build-windows.yml
+# Original file is (c) Jiri Maier 2025
+
+name: Build and Deploy DataPlotter on Windows
+
+on: [ push, workflow_dispatch, pull_request, merge_group ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.13+
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.13"
+
+    - name: Set up Python and Qt Installer
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install aqtinstall pillow pefile
+      shell: cmd
+
+    - name: Install Qt
+      run: |
+        python -m aqt install-qt windows desktop 5.15.2 win64_msvc2019_64 --outputdir D:/a/DataPlotter/Qt
+      shell: cmd
+
+    - name: Install dependencies with vcpkg
+      run: |
+        git clone https://github.com/microsoft/vcpkg.git C:/vcpkg
+        cd C:/vcpkg
+        bootstrap-vcpkg.bat
+        vcpkg integrate install
+        vcpkg install ninja
+        vcpkg install cmake
+        vcpkg install fftw3:x64-windows
+      shell: cmd
+
+    - name: Add Qt bin directory to PATH
+      shell: bash
+      run: |
+        echo "D:/a/DataPlotter/Qt/5.15.2/msvc2019_64/bin" >> $GITHUB_PATH
+
+    - name: Set up MSVC environment
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
+
+    - name: Configure CMake
+      run: |
+        cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="D:/a/DataPlotter/Qt/5.15.2/msvc2019_64/lib/cmake;${{env.VCPKG_ROOT}}/installed/x64-windows"
+      shell: cmd
+
+    - name: Build project
+      run: cmake --build build --config Release
+      shell: cmd
