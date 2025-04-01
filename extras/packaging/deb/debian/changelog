@@ -1,0 +1,11 @@
+zero-elabviewer (1.0-2) unstable; urgency=medium
+
+  * Updates, support for Qt6 build and icons
+
+ -- Jakub Vanek <linuxtardis@gmail.com>  Sun, 23 Mar 2025 02:26:21 +0100
+
+zero-elabviewer (1.0-1) unstable; urgency=medium
+
+  * Initial Debian packaging attempt
+
+ -- Pavel Pisa <pisa@fel.cvut.cz>  Wed, 19 Mar 2025 01:58:44 +0100
